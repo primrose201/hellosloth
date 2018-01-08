@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Flicking</title>
+    <style>
+        .option_summary li {
+            margin: 16px 0;
+            font-size: 20px;
+        }
+        #flick-container, #flick-container2 {
+            position: relative;
+            overflow: hidden;
+            width: 800px;
+            background-color: #ccc;
+            text-align: center;
+        }
+        #flick-layers, #flick-layers2 {
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+            white-space: nowrap;
+            transform: translateX(0);
+        }
+        /*
+        #flick-container::before, #flick-container2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 30px;
+            left: 0;
+            z-index: 1;
+            width: 79px;
+            border-right: 1px solid red;
+        }
+        #flick-container::after, #flick-container2::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 30px;
+            right: 0;
+            z-index: 1;
+            width: 79px;
+            border-left: 1px solid red;
+        }
+        */
+        .flick-layer {
+            display: inline-block;
+            box-sizing: border-box;
+            list-style: none;
+            width: 100%;
+            height: 300px;
+            margin: 0;
+            padding: 0;
+            font-size: 30px;
+            line-height: 300px;
+        }
+        #flick-btns, #flick-btns2 {
+            height: 30px;
+            background-color: #fff;
+            font-size: 0;
+        }
+        #flick-btns::before, #flick-btns2::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+        .flick-btn {
+            display:inline-block;
+            width: 14px;
+            height: 14px;
+            margin: 0 4px;
+            border-radius: 7px;
+            background-color: #ccc;
+            vertical-align: middle;
+        }
+        .flick-btn.on {
+            background-color: #6cc;
+        }
+        .flick-btn-prev, .flick-btn-next {
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            width: 80px;
+            height: 300px;
+            background: linear-gradient(#fff 50%, #fff 0) no-repeat 50% 50%/50px auto;
+        }
+        .flick-btn-prev {
+            left: 0;
+            background-image: url(prev.svg);
+        }
+        .flick-btn-next {
+            right: 0;
+            background-image: url(next.svg);
+        }
+    </style>
+</head>
+<body>
+    <h1>Flicking</h1>
+    <hr>
+    <h2>기본 flicking</h2>
+    <div id="flick-container">
+        <ul id="flick-layers">
+            <li class="flick-layer" style="background-color: #c6c;">Layer 1</li>
+            <li class="flick-layer" style="background-color: #6cc;">Layer 2</li>
+            <li class="flick-layer" style="background-color: #cc6;">Layer 3</li>
+            <li class="flick-layer" style="background-color: #66c;">Layer 4</li>
+            <li class="flick-layer" style="background-color: #c66;">Layer 5</li>
+            <li class="flick-layer" style="background-color: #6c6;">Layer 6</li>
+        </ul>
+        <div id="flick-btns">
+            <a href="#" class="flick-btn on" role="button" aria-label="layer 1"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 2"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 3"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 4"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 5"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 6"></a>
+        </div>
+        <a href="#" class="flick-btn-prev" role="button" aria-label="이전"></a>
+        <a href="#" class="flick-btn-next" role="button" aria-label="다음"></a>
+    </div>
+    <hr>
+    <h2>무한 flicking</h2>
+    <div id="flick-container2">
+        <ul id="flick-layers2">
+            <li class="flick-layer" style="background-color: #c6c;">Layer 1</li>
+            <li class="flick-layer" style="background-color: #6cc;">Layer 2</li>
+            <li class="flick-layer" style="background-color: #cc6;">Layer 3</li>
+            <li class="flick-layer" style="background-color: #66c;">Layer 4</li>
+            <li class="flick-layer" style="background-color: #c66;">Layer 5</li>
+            <li class="flick-layer" style="background-color: #6c6;">Layer 6</li>
+        </ul>
+        <div id="flick-btns2">
+            <a href="#" class="flick-btn on" role="button" aria-label="layer 1"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 2"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 3"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 4"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 5"></a>
+            <a href="#" class="flick-btn" role="button" aria-label="layer 6"></a>
+        </div>
+        <a href="#" class="flick-btn-prev" role="button" aria-label="이전"></a>
+        <a href="#" class="flick-btn-next" role="button" aria-label="다음"></a>
+    </div>
+    <hr>
+    <h2>flicking option</h2>
+    <ul class="option_summary">
+        <li>
+            <strong>width</strong>
+            : 컨테이너 너비
+        </li>
+        <li>
+            <strong>area</strong>
+            : 양 옆 플리킹 허용 영역
+        </li>
+        <li>
+            <strong>count</strong>
+            : 레이어의 수
+        </li>
+        <li>
+            <strong>duration</strong>
+            : 플리킨 애니메이션 시간
+        </li>
+        <li>
+            <strong>circular</strong>
+            : 무한 플리킹 여부
+        </li>
+        <li>
+            <strong>arrow</strong>
+            : 화살표 버튼 사용 여부 (사용시 버튼 id값 설정 필요)
+        </li>
+    </ul>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="flicking.js"></script>
+</body>
+</html>
