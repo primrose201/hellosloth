@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+/* font */
+@font-face {
+    font-family: Digital;
+    src: url(font/font-digital.woff) format('woff'), url(font/font-digital.ttf) format('ttf');
+}
+
+/* reset */
+body,table,tbody,tr,th,td,h1 {margin:0;padding:0;}
+em {font-style:normal;}
+body {font-size:16px;line-height:1.2;}
+a {text-decoration:none;}
+
+/* common */
+.out-shadow {box-sizing:border-box;border:3px solid;border-color:#fff #999 #999 #fff;background-color:#eee;}
+.inner-shadow {box-sizing:border-box;height:100%;border:3px solid;border-color:#777 #fff #fff #777;background-color:#eee;}
+
+/* layout */
+body {background-color:#333;}
+.wrap {position:fixed;top:0;right:0;bottom:0;left:0;}
+.section_game {position:absolute;top:50%;left:50%;width:270px;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);}
+.tit_game {margin-bottom:7px;font-family:NanumGothic, sans-serif;font-size:20px;letter-spacing:1px;text-align:center;color:#ddd;}
+.cont_game  {box-shadow:0 0 2px 2px #777;}
+
+.frame_head {height:60px;padding:10px;text-align:center;}
+.frame_head::after {content:'';display:block;clear:both;}
+.frame_head .cnt {margin-top:3px;padding:0 5px;border:1px solid;border-color:#777 #fff #fff #777;border-radius:1px;background-color:#000;font-family:monospace;font-size:20px;line-height:20px;color:#e1392e;}
+.frame_head .cnt_click {float:left;margin-left:8px;}
+.frame_head .cnt_mine {float:right;margin-right:8px;}
+.frame_head .ico_status {display:inline-block;width:24px;height:24px;margin-top:1px;background:url(img/icon-good.svg) no-repeat 50% 50%/18px 18px;}
+.frame_head .ico_status.out-shadow {border-width:2px;}
+.frame_head .ico_bad {background-color:#555;background-image: url(img/icon-bad.svg) !important;}
+
+.frame_game {table-layout:fixed;width:100%;border-collapse:collapse;}
+.frame_game .out-shadow {border-width:2px;}
+.frame_game td {width:30px;height:30px;}
+.frame_game .area {display:block;position:relative;box-sizing:border-box;height:100%;border-top:2px solid #999;border-right:2px solid #999;background-color:#ccc;}
+.frame_game td:last-child .area {border-right:0;}
+.frame_game .land {position:absolute;top:0;right:0;bottom:0;left:0;}
+.frame_game .flag {background:#eee url(img/game-flag.svg) no-repeat 50% 50%/20px 20px;}
+.frame_game .mine {background:#542a2a url(img/game-dynamite.svg) no-repeat 50% 50%/20px 20px;}
+.frame_game .danger {display:block;font-weight:bold;font-size:18px;line-height:30px;text-align:center;color:#000;}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>지뢰찾기 게임</title>
+    <link rel="stylesheet" href="mine.css">
+</head>
+<body oncontextmenu="return false;">
+    <div class="wrap">
+        <div class="section_game">
+            <h1 class="tit_game">지뢰찾기 게임</h1>
+            <div class="cont_game">
+                <div class="frame_head out-shadow">
+                    <div class="inner-shadow">
+                        <em id="cnt_click" class="cnt cnt_click">000</em>
+                        <em id="cnt_mine" class="cnt cnt_mine">069</em>
+                        <i id="ico_status" class="ico_status out-shadow" role="img"></i>
+                    </div>
+                </div>
+                <table class="frame_game">
+                    <tbody id="game"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="mine.js"></script>
+</body>
+</html>
