@@ -7,7 +7,7 @@
 }
 
 /* reset */
-body,table,tbody,tr,th,td,h1 {margin:0;padding:0;}
+body,table,tbody,tr,th,td,h1,p {margin:0;padding:0;}
 em {font-style:normal;}
 body {font-size:16px;line-height:1.2;}
 a {text-decoration:none;}
@@ -40,4 +40,19 @@ body {background-color:#333;}
 .frame_game .land {position:absolute;top:0;right:0;bottom:0;left:0;}
 .frame_game .flag {background:#eee url(img/game-flag.svg) no-repeat 50% 50%/20px 20px;}
 .frame_game .mine {background:#542a2a url(img/game-dynamite.svg) no-repeat 50% 50%/20px 20px;}
-.frame_game .danger {display:block;font-weight:bold;font-size:18px;line-height:30px;text-align:center;color:#000;}
+.frame_game .danger {display:block;font-weight:bold;font-size:18px;line-height:30px;text-align:center;}
+
+.frame_game .col_1 {color:#0a72de;}
+.frame_game .col_2 {color:#0a6505;}
+.frame_game .col_3 {color:#ee2129;}
+.frame_game .col_4 {color:#0c415f;}
+.frame_game .col_5 {color:#3e2723;}
+.frame_game .col_6 {color:#1ca7ac;}
+.frame_game .col_7 {color:#000;}
+.frame_game .col_8 {color:#777;}
+
+/* layer - win */
+.layer {position:fixed;top:50%;left:50%;font-size:32px;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);}
+.layer .txt {text-shadow:0 0 3px #fff;}
+.layer_win .txt {color:#333;}
+.layer_lose .txt {color:#d95140;}

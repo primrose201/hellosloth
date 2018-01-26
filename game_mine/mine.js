@@ -17,7 +17,7 @@ var $game = $('#game'),
 var option = {
     row: 9,
     col: 9,
-    mineCount: 1
+    mineCount: 12
 };
 
 /* initialize */
@@ -27,6 +27,8 @@ var initialize = function() {
 
     /* reset */
     $game.find('tr').remove();
+    $cntClick.html('000');
+    $cntMine.html(makeDigit(option.row * option.col - option.mineCount));
     minedLand = 0;
     var mine = [];
 
@@ -50,8 +52,9 @@ var initialize = function() {
     /* get query to create area */
     function getQuery(m, v) {
         v = (v === -1 || v === 0) ? '' : v;
-        if (m) return '<td><a href="#" class="area mine"><span class="land out-shadow"></span><span class="danger">' + v + '</span></a></td>';
-        else return '<td><a href="#" class="area"><span class="land out-shadow"></span><span class="danger">' + v + '</span></a></td>';
+        var col = (v === -1 || v === 0) ? '' : 'col_' + v;
+        if (m) return '<td><a href="#" class="area mine ' + col + '"><span class="land out-shadow"></span><span class="danger">' + v + '</span></a></td>';
+        else return '<td><a href="#" class="area ' + col +'"><span class="land out-shadow"></span><span class="danger">' + v + '</span></a></td>';
     }
 
 
@@ -157,22 +160,18 @@ var initialize = function() {
 function setLoseView() {
     $icoStatus.addClass('ico_bad');
     $('.land').remove();
+    $('#layer_lose').fadeIn(1000);
 }
 
 /* if win */
 function setWinView() {
-    alert('hello');
+    $('#layer_win').fadeIn(1000);
 }
 
 /* count up a cnt of clicks */
 function countUpClick() {
     var cnt = Number($cntClick.html()) + 1;
-    cnt = String(cnt);
-
-    while (cnt.length < 3) {
-        cnt = '0' + cnt;
-    }
-    $cntClick.html(cnt);
+    $cntClick.html(makeDigit(cnt));
 }
 
 /* remove view */
@@ -181,12 +180,7 @@ function removeLand(row, col) {
     // count down a cnt of mined lands
     function countDownMine() {
         var cnt = Number($cntMine.html()) - 1;
-        cnt = String(cnt);
-
-        while (cnt.length < 3) {
-            cnt = '0' + cnt;
-        }
-        $cntMine.html(cnt);
+        $cntMine.html(makeDigit(cnt));
     }
 
     countDownMine();
@@ -221,7 +215,7 @@ function e_clickArea(e) {
     }
 
     // win
-    if ($cntMine.html() + option.mineCount === option.row * option.col) setWinView();
+    if ($cntMine.html() === '000') setWinView();
 }
 
 /* right click area */
@@ -233,6 +227,15 @@ function e_rClickArea(e) {
     }
 }
 /* //EVENT */
+
+/* make 3 digits num */
+function makeDigit(n) {
+    n = String(n);
+    while (n.length < 3) {
+        n = '0' + n;
+    }
+    return n;
+}
 
 /* check and remove algorithm */
 function checkAndRemove(row, col) {
