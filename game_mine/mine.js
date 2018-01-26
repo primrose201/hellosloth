@@ -1,24 +1,55 @@
 /* Universal Method */
+// check array
 Array.prototype.contain = function(val) {
     for (var i = 0; i < this.length; ++i)
         if (this[i] === val) return true;
     return false;
 };
 
+// get data in url
+var getUrlData = function() {
+    var data = {};
+    var query = location.href;
+    query = query.substring(query.indexOf('?') + 1,query.length).split(',');
+    query.forEach(function(v, i, a) {
+        var set = v.split('=');
+        data[set[0]] = set[1];
+    });
+
+    return data;
+};
+
 /* global variables */
 var minedLand = 0;
 var i, j, MAP = [], $tr;
 var $game = $('#game'),
+    $inpMine = $('#inp_mine'),
     $icoStatus = $('#ico_status'),
     $cntClick = $('#cnt_click'),
     $cntMine = $('#cnt_mine');
 
-/* option */
+/* default option */
 var option = {
     row: 9,
     col: 9,
     mineCount: 12
 };
+
+/* setting data */
+var envData = getUrlData();
+if (envData.m) {
+    option.mineCount = envData.m;
+}
+
+/* setting event */
+$inpMine.on({
+    'change': function(e) {
+        var $that = $(this), val = $that.val();
+        if (val >= option.row * option.col || val < 1) {
+            $that.val(12);alert('지뢰 수가 너무 적거나 너무 많습니다.');
+        }
+    }
+});
 
 /* initialize */
 var initialize = function() {
@@ -29,6 +60,7 @@ var initialize = function() {
     $game.find('tr').remove();
     $cntClick.html('000');
     $cntMine.html(makeDigit(option.row * option.col - option.mineCount));
+    $inpMine.val(option.mineCount);
     minedLand = 0;
     var mine = [];
 

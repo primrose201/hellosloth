@@ -9,6 +9,18 @@
     <div class="wrap">
         <div class="section_game">
             <h1 class="tit_game">지뢰찾기 게임</h1>
+            <div class="aside_game out-shadow">
+                <div class="inner-shadow">
+                    <form action="mine.html" id="form_init">
+                        <h2>게임설정</h2>
+                        <div class="frame_inp">
+                            <label for="inp_mine">지뢰 수</label>
+                            <input type="number" name="m" id="inp_mine">
+                        </div>
+                        <button type="submit" class="btn_submit out-shadow">시작</button>
+                    </form>
+                </div>
+            </div>
             <div class="cont_game">
                 <div class="frame_head out-shadow">
                     <div class="inner-shadow">
@@ -23,7 +35,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="layer_win" class="layer layer_win" style="display:none;">
         <p class="txt">YOU WIN</p>
     </div>
